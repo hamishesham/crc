@@ -1,6 +1,5 @@
 def xor(a, b): 
 
-	#  result 
 	result = [] 
 
 	for i in range(1, len(b)): 
@@ -10,35 +9,18 @@ def xor(a, b):
 			result.append('1') 
 
 	return ''.join(result) 
-
-
-# Performs Modulo-2 division 
 def mod2div(divident, divisor): 
-
-	# Number of bits to be XORed at a time. 
 	pick = len(divisor) 
-
-	# Slicing the divident to appropriate 
-	# length for particular step 
 	tmp = divident[0 : pick] 
 
 	while pick < len(divident): 
 
 		if tmp[0] == '1': 
 
-			# replace the divident by the result 
-			# of XOR and pull 1 bit down 
+			 
 			tmp = xor(divisor, tmp) + divident[pick] 
-
-		else: # If leftmost bit is '0' 
-
-			# If the leftmost bit of the dividend (or the 
-			# part used in each step) is 0, the step cannot 
-			# use the regular divisor; we need to use an 
-			# all-0s divisor. 
-			tmp = xor('0'*pick, tmp) + divident[pick] 
-
-		# increment pick to move further 
+		else: 
+			tmp = xor('0'*pick, tmp) + divident[pick]  
 		pick += 1
 
 	if tmp[0] == '1': 
